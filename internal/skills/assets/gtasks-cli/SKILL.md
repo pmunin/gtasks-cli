@@ -46,7 +46,13 @@ Get-Command gtasks
 
 **If gtasks is not installed:**
 
-**macOS/Linux (recommended):**
+**macOS/Linux (recommended) — Homebrew over SSH.** Builds from source using your GitHub SSH key, so it works whether the repo is public or private (Go is pulled in automatically as a build dependency):
+```bash
+brew tap pmunin/gtasks-cli git@github.com:pmunin/gtasks-cli.git
+brew install pmunin/gtasks-cli/gtasks
+```
+
+**Install script** _(works only while the repo is public)_:
 ```bash
 curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
 ```
@@ -55,12 +61,12 @@ Installs to `~/.local/bin` by default. Set `INSTALL_DIR` to override:
 INSTALL_DIR=/usr/local/bin curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
 ```
 
-**Manual install:**
+**Manual install** _(works only while the repo is public)_:
 1. Download the binary for your system from [GitHub Releases](https://github.com/pmunin/gtasks-cli/releases)
 2. Move to a directory in your PATH (e.g. `~/.local/bin` or `/usr/local/bin`)
 3. `chmod +x gtasks`
 
-**Windows:** Download the binary from [GitHub Releases](https://github.com/pmunin/gtasks-cli/releases) and add to PATH.
+**Windows:** Download the binary from [GitHub Releases](https://github.com/pmunin/gtasks-cli/releases) and add to PATH (while the repo is public), or build from source with Go.
 
 Verify installation: `gtasks --version`
 

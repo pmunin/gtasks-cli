@@ -212,7 +212,7 @@ No,Title,Description,Status,Due
 
 | Error | Cause | Solution |
 |-------|-------|----------|
-| "command not found: gtasks" | GTasks not installed | Run `curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh \| bash` or download from [releases](https://github.com/pmunin/gtasks-cli/releases) |
+| "command not found: gtasks" | GTasks not installed | Recommended (works public or private): `brew tap pmunin/gtasks-cli git@github.com:pmunin/gtasks-cli.git && brew install pmunin/gtasks-cli/gtasks`. While public only: `curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh \| bash` |
 | "Failed to get service" | Not authenticated or missing env vars | Check env vars, then run `gtasks login` |
 | Missing GTASKS_CLIENT_ID/SECRET | Environment variables not set | Export GTASKS_CLIENT_ID and GTASKS_CLIENT_SECRET |
 | "incorrect task-list name" | List doesn't exist | Check with `gtasks tasklists view` |
