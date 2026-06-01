@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/BRO3886/gtasks/internal/utils"
+	"github.com/pmunin/gtasks-cli/internal/utils"
 )
 
 // GetInstallLocation returns the directory used for gtasks configuration and token storage.

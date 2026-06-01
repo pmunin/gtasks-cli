@@ -2,13 +2,19 @@
 
 `gtasks`: A CLI Tool for Google Tasks
 
+> ### ⚠️ This is a personal fork
+>
+> Maintained at [`pmunin/gtasks-cli`](https://github.com/pmunin/gtasks-cli), forked from [`BRO3886/gtasks`](https://github.com/BRO3886/gtasks).
+>
+> **Every install command and the built-in auto-update check in this repo point to [this fork's releases](https://github.com/pmunin/gtasks-cli/releases) — _not_ the original repository.** Binaries you install or auto-update to come from `pmunin/gtasks-cli`.
+
 ![gtasks image](docs/static/images/screenshot.png)
 
 ---
 
 ## Docs
 
-Refer to the [docs website](https://gtasks.sidv.dev) to read about available commands.
+See the [Commands](#commands) section below for available commands.
 
 ## AI Agent Skills
 
@@ -32,32 +38,37 @@ gtasks skills uninstall --agent codex
 
 ## Installation
 
+All methods below install from this fork (`pmunin/gtasks-cli`).
+
 ### Homebrew
 
+Installs by building from the tagged source over SSH (uses your GitHub SSH key, so it works whether the repo is public or private). Go is pulled in automatically as a build dependency:
+
 ```bash
-brew tap BRO3886/tap
-brew install gtasks
+brew tap pmunin/gtasks-cli git@github.com:pmunin/gtasks-cli.git
+brew install pmunin/gtasks-cli/gtasks
+
+# upgrade later:
+brew update && brew upgrade gtasks
 ```
+
+Requires an SSH key with access to the repo. The formula is generated automatically on each GitHub release (see [`homebrew-formula.rb`](homebrew-formula.rb) and [`.github/workflows/bump-formula.yml`](.github/workflows/bump-formula.yml)).
 
 **macOS / Linux (install script):**
 
 ```bash
-curl -fsSL https://gtasks.sidv.dev/install | bash
+curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
 ```
 
 Installs to `~/.local/bin` by default. Override with `INSTALL_DIR`:
 
 ```bash
-INSTALL_DIR=/usr/local/bin curl -fsSL https://gtasks.sidv.dev/install | bash
+INSTALL_DIR=/usr/local/bin curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
 ```
 
-**Manual install:** Download the binary for your system from [releases](https://github.com/BRO3886/gtasks/releases), move it to a directory in your `PATH`, and `chmod +x gtasks`.
+**Manual install:** Download the binary for your system from [releases](https://github.com/pmunin/gtasks-cli/releases), move it to a directory in your `PATH`, and `chmod +x gtasks`.
 
-**Go install:**
-
-```bash
-go install github.com/BRO3886/gtasks@latest
-```
+**From source:** see [Instructions to Run and Build from Source](#instructions-to-run-and-build-from-source) below.
 
 
 
@@ -73,8 +84,8 @@ go install github.com/BRO3886/gtasks@latest
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/BRO3886/gtasks
-cd gtasks
+git clone https://github.com/pmunin/gtasks-cli
+cd gtasks-cli
 ```
 
 2. Set up credentials (see Configuration section below).
@@ -155,7 +166,7 @@ New installations use `~/.config/gtasks/` by default.
 | `token.json` | OAuth2 token (created on `gtasks login`) |
 | `config.toml` | Optional configuration file (created manually) |
 
-See the [Configuration docs](https://gtasks.sidv.dev/docs/configuration/) for the full config file reference.
+See the [Configuration](#configuration) section above for the full config file reference.
 
 - Usage
 

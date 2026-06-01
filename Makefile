@@ -7,14 +7,14 @@ v ?= v0.12.0
 
 # Set EMBED_CREDS=1 to embed credentials in binary
 # Example: make dev EMBED_CREDS=1
-VERSION_LDFLAGS = -X github.com/BRO3886/gtasks/cmd.Version=$(v)
+VERSION_LDFLAGS = -X github.com/pmunin/gtasks-cli/cmd.Version=$(v)
 BUILD_LDFLAGS = $(VERSION_LDFLAGS)
 
 ifdef EMBED_CREDS
 ifdef GTASKS_CLIENT_ID
 ifdef GTASKS_CLIENT_SECRET
-BUILD_LDFLAGS += -X github.com/BRO3886/gtasks/internal/config.ClientID=$(GTASKS_CLIENT_ID)
-BUILD_LDFLAGS += -X github.com/BRO3886/gtasks/internal/config.ClientSecret=$(GTASKS_CLIENT_SECRET)
+BUILD_LDFLAGS += -X github.com/pmunin/gtasks-cli/internal/config.ClientID=$(GTASKS_CLIENT_ID)
+BUILD_LDFLAGS += -X github.com/pmunin/gtasks-cli/internal/config.ClientSecret=$(GTASKS_CLIENT_SECRET)
 endif
 endif
 endif

@@ -9,7 +9,7 @@ import (
 )
 
 // Client ID - injected at build time or via environment variable
-// Build with: go build -ldflags "-X github.com/BRO3886/gtasks/internal/config.ClientID=your-client-id"
+// Build with: go build -ldflags "-X github.com/pmunin/gtasks-cli/internal/config.ClientID=your-client-id"
 var ClientID = ""
 
 // Client Secret - injected at build time or via environment variable

@@ -1,7 +1,7 @@
 ---
 name: gtasks-cli
 description: Manage Google Tasks from the command line - view, create, update, delete tasks and task lists. Use when the user asks to interact with Google Tasks, manage to-do items, create task lists, mark tasks complete, or check their Google Tasks.
-homepage: https://github.com/BRO3886/gtasks
+homepage: https://github.com/pmunin/gtasks-cli
 license: MIT
 compatibility: Requires gtasks CLI tool to be installed and authenticated
 metadata:
@@ -48,19 +48,19 @@ Get-Command gtasks
 
 **macOS/Linux (recommended):**
 ```bash
-curl -fsSL https://gtasks.sidv.dev/install | bash
+curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
 ```
 Installs to `~/.local/bin` by default. Set `INSTALL_DIR` to override:
 ```bash
-INSTALL_DIR=/usr/local/bin curl -fsSL https://gtasks.sidv.dev/install | bash
+INSTALL_DIR=/usr/local/bin curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
 ```
 
 **Manual install:**
-1. Download the binary for your system from [GitHub Releases](https://github.com/BRO3886/gtasks/releases)
+1. Download the binary for your system from [GitHub Releases](https://github.com/pmunin/gtasks-cli/releases)
 2. Move to a directory in your PATH (e.g. `~/.local/bin` or `/usr/local/bin`)
 3. `chmod +x gtasks`
 
-**Windows:** Download the binary from [GitHub Releases](https://github.com/BRO3886/gtasks/releases) and add to PATH.
+**Windows:** Download the binary from [GitHub Releases](https://github.com/pmunin/gtasks-cli/releases) and add to PATH.
 
 Verify installation: `gtasks --version`
 

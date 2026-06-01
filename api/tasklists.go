@@ -3,7 +3,7 @@ package api
 import (
 	"errors"
 
-	"github.com/BRO3886/gtasks/internal/utils"
+	"github.com/pmunin/gtasks-cli/internal/utils"
 	"google.golang.org/api/tasks/v1"
 )
 

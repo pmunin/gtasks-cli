@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	githubRepo   = "BRO3886/gtasks"
+	githubRepo   = "pmunin/gtasks-cli"
 	cacheTTL     = 24 * time.Hour
 	checkTimeout = 2 * time.Second
 )

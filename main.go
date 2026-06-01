@@ -16,7 +16,7 @@ limitations under the License.
 package main
 
 import (
-	"github.com/BRO3886/gtasks/cmd"
+	"github.com/pmunin/gtasks-cli/cmd"
 )
 
 func main() {

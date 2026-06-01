@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/BRO3886/gtasks/api"
-	"github.com/BRO3886/gtasks/internal/config"
-	"github.com/BRO3886/gtasks/internal/utils"
+	"github.com/pmunin/gtasks-cli/api"
+	"github.com/pmunin/gtasks-cli/internal/config"
+	"github.com/pmunin/gtasks-cli/internal/utils"
 	"github.com/araddon/dateparse"
 	"github.com/fatih/color"
 	"github.com/manifoldco/promptui"

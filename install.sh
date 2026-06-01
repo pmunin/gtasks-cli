@@ -2,9 +2,9 @@
 set -euo pipefail
 
 # gtasks installer — downloads the latest release from GitHub
-# Usage: curl -fsSL https://gtasks.sidv.dev/install | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
 
-REPO="BRO3886/gtasks"
+REPO="pmunin/gtasks-cli"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/bin}"
 BINARY_NAME="gtasks"
 

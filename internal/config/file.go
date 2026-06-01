@@ -12,7 +12,7 @@ import (
 	"github.com/knadh/koanf/providers/file"
 	"github.com/knadh/koanf/v2"
 
-	"github.com/BRO3886/gtasks/internal/utils"
+	"github.com/pmunin/gtasks-cli/internal/utils"
 )
 
 // k is the package-level koanf instance loaded by LoadAppConfig.

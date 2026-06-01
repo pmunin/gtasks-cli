@@ -15,7 +15,7 @@ builds:
       - windows
       - darwin
     ldflags:
-      - -X github.com/BRO3886/gtasks/cmd.Version={{.Version}}
+      - -X github.com/pmunin/gtasks-cli/cmd.Version={{.Version}}
 archives:
   - replacements:
       darwin: macOS

@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/BRO3886/gtasks/internal/skills"
+	"github.com/pmunin/gtasks-cli/internal/skills"
 	"github.com/fatih/color"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"

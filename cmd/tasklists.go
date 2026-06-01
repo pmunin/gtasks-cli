@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"github.com/BRO3886/gtasks/api"
-	"github.com/BRO3886/gtasks/internal/utils"
+	"github.com/pmunin/gtasks-cli/api"
+	"github.com/pmunin/gtasks-cli/internal/utils"
 	"github.com/fatih/color"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"

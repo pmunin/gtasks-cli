@@ -10,8 +10,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/BRO3886/gtasks/internal/config"
-	"github.com/BRO3886/gtasks/internal/utils"
+	"github.com/pmunin/gtasks-cli/internal/config"
+	"github.com/pmunin/gtasks-cli/internal/utils"
 	"github.com/zalando/go-keyring"
 	"golang.org/x/oauth2"
 	"google.golang.org/api/option"

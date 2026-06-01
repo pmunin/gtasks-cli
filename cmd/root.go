@@ -5,9 +5,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/BRO3886/gtasks/internal/config"
-	"github.com/BRO3886/gtasks/internal/update"
-	"github.com/BRO3886/gtasks/internal/utils"
+	"github.com/pmunin/gtasks-cli/internal/config"
+	"github.com/pmunin/gtasks-cli/internal/update"
+	"github.com/pmunin/gtasks-cli/internal/utils"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
@@ -121,6 +121,6 @@ func printUpdateNotice() {
 		yellow := color.New(color.FgYellow)
 		fmt.Fprintln(os.Stderr)
 		yellow.Fprintf(os.Stderr, "A new version of gtasks is available: %s → %s\n", Version, result.Latest)
-		fmt.Fprintf(os.Stderr, "Update: curl -fsSL https://gtasks.sidv.dev/install | bash\n")
+		fmt.Fprintf(os.Stderr, "Update: curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash\n")
 	}
 }
