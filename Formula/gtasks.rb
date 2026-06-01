@@ -1,16 +1,16 @@
 class Gtasks < Formula
   desc "CLI tool for Google Tasks"
   homepage "https://github.com/pmunin/gtasks-cli"
-  url "git@github.com:pmunin/gtasks-cli.git", tag: "v0.13.0-pmunin"
+  url "ssh://git@github.com/pmunin/gtasks-cli.git", using: :git, tag: "v0.13.1-pmunin"
   license "Apache-2.0"
 
-  head "git@github.com:pmunin/gtasks-cli.git", branch: "master"
+  head "ssh://git@github.com/pmunin/gtasks-cli.git", using: :git, branch: "master"
 
   depends_on "go" => :build
 
   def install
     system "go", "build", "-trimpath",
-           "-ldflags", "-s -w -X github.com/pmunin/gtasks-cli/cmd.Version=v0.13.0-pmunin",
+           "-ldflags", "-s -w -X github.com/pmunin/gtasks-cli/cmd.Version=v0.13.1-pmunin",
            "-o", bin/"gtasks", "."
   end
 
