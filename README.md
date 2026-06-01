@@ -36,6 +36,56 @@ gtasks skills uninstall --agent codex
 
 **For contributors:** the canonical skill files live in [`internal/skills/assets/gtasks-cli/`](internal/skills/assets/gtasks-cli/).
 
+## MCP Server
+
+GTasks can run as a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server over stdio, so MCP-compatible AI clients (Claude Code, Claude Cowork, etc.) can view and manage your tasks directly.
+
+Log in first, then point your client at `gtasks mcp`:
+
+```bash
+gtasks login            # one-time OAuth2 sign-in
+gtasks mcp              # run the MCP server (stdio; not meant to be run by hand)
+```
+
+**Add to Claude Code:**
+
+```bash
+claude mcp add gtasks -- gtasks mcp
+```
+
+**Add to the Claude Desktop app:**
+
+1. Open **Settings → Developer → Edit Config** (or edit the file directly):
+   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+2. Add a `gtasks` entry under `mcpServers`. The desktop app doesn't use your shell `PATH`, so use the **absolute path** to the `gtasks` binary (find it with `which gtasks`):
+
+   ```json
+   {
+     "mcpServers": {
+       "gtasks": { "command": "/opt/homebrew/bin/gtasks", "args": ["mcp"] }
+     }
+   }
+   ```
+
+3. **Fully quit and reopen** Claude Desktop (Cmd+Q / quit from the tray — closing the window isn't enough).
+
+> On macOS you may get a Keychain access prompt the first time the app reads your saved token — click **Always Allow**.
+
+**Add to Claude Cowork / other clients** — add an entry to the client's MCP config:
+
+```json
+{
+  "mcpServers": {
+    "gtasks": { "command": "gtasks", "args": ["mcp"] }
+  }
+}
+```
+
+**Tools exposed:** `list_tasklists`, `create_tasklist`, `delete_tasklist`, `list_tasks`, `create_task`, `update_task`, `complete_task`, `uncomplete_task`, `delete_task`, `clear_completed_tasks`.
+
+When a tool takes a `tasklist` (title or id) and it's omitted, the configured default list is used (or the only list, if you have just one).
+
 ## Installation
 
 All methods below install from this fork (`pmunin/gtasks-cli`).
@@ -202,6 +252,14 @@ gtasks login
 
 ```bash
 gtasks logout
+```
+
+### MCP Server
+
+- Run as an MCP server over stdio (for Claude Code, Claude Cowork, and other MCP clients). See [MCP Server](#mcp-server) for setup.
+
+```bash
+gtasks mcp
 ```
 
 ### Tasklists
