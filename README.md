@@ -54,19 +54,17 @@ brew update && brew upgrade gtasks
 
 Requires an SSH key with access to the repo. The formula is generated automatically on each GitHub release (see [`homebrew-formula.rb`](homebrew-formula.rb) and [`.github/workflows/bump-formula.yml`](.github/workflows/bump-formula.yml)).
 
-**macOS / Linux (install script):**
+> **After installing**, supply your own Google OAuth credentials before `gtasks login` — the binary ships without them. See [Configuration](#configuration).
+
+**No Homebrew?** Build from source over SSH:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
+git clone git@github.com:pmunin/gtasks-cli.git
+cd gtasks-cli && go build -o ~/.local/bin/gtasks .   # ensure ~/.local/bin is on your PATH
 ```
 
-Installs to `~/.local/bin` by default. Override with `INSTALL_DIR`:
-
-```bash
-INSTALL_DIR=/usr/local/bin curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
-```
-
-**Manual install:** Download the binary for your system from [releases](https://github.com/pmunin/gtasks-cli/releases), move it to a directory in your `PATH`, and `chmod +x gtasks`.
+While the repo is public, the curl installer also works:
+`curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash`
 
 **From source:** see [Instructions to Run and Build from Source](#instructions-to-run-and-build-from-source) below.
 
@@ -113,35 +111,30 @@ make release
 
 ### Configuration
 
+> **Homebrew and from-source builds ship without OAuth credentials** — you must supply your own Google client before `gtasks login` will work.
+
 To use GTasks, you need to set up Google OAuth2 credentials:
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select existing one
 3. Enable the Google Tasks API
-4. Create OAuth2 credentials:
+4. Create OAuth2 credentials, Application type: **"Desktop app"**, and copy the client ID and secret.
 
-   - Application type: "Web application"
-   - Add authorized redirect URIs:
-     - `http://localhost:8080/callback`
-     - `http://localhost:8081/callback`
-     - `http://localhost:8082/callback`
-     - `http://localhost:9090/callback`
-     - `http://localhost:9091/callback`
+   gtasks logs in via a loopback redirect on one of these ports — `8080`, `8081`, `8082`, `9090`, `9091` (path `/callback`). A "Desktop app" client allows loopback redirects automatically, so there is nothing to register.
 
-5. Supply credentials via environment variables:
-
-```bash
-export GTASKS_CLIENT_ID="your-client-id.apps.googleusercontent.com"
-export GTASKS_CLIENT_SECRET="your-client-secret"
-```
-
-Or add them to `~/.config/gtasks/config.toml` (persistent, no shell profile changes needed):
+5. Supply credentials via the config file `~/.config/gtasks/config.toml` (recommended — persistent, no shell profile changes needed):
 
 ```toml
 [credentials]
 client_id     = "your-client-id.apps.googleusercontent.com"
 client_secret = "your-client-secret"
 ```
+
+```bash
+chmod 600 ~/.config/gtasks/config.toml
+```
+
+Alternatively, export `GTASKS_CLIENT_ID` and `GTASKS_CLIENT_SECRET` as environment variables in your shell profile (never commit them).
 
 When building from source, you can also pass credentials at build time:
 

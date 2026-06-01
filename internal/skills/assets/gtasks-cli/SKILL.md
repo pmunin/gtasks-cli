@@ -44,71 +44,54 @@ where gtasks
 Get-Command gtasks
 ```
 
-**If gtasks is not installed:**
+**If gtasks is not installed — Homebrew over SSH (recommended):**
 
-**macOS/Linux (recommended) — Homebrew over SSH.** Builds from source using your GitHub SSH key, so it works whether the repo is public or private (Go is pulled in automatically as a build dependency):
+Builds from source using your GitHub SSH key, so it works whether the repo is public or private (Go is pulled in automatically as a build dependency):
 ```bash
 brew tap pmunin/gtasks-cli git@github.com:pmunin/gtasks-cli.git
 brew install pmunin/gtasks-cli/gtasks
 ```
 
-**Install script** _(works only while the repo is public)_:
+**No Homebrew? Build from source over SSH:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
+git clone git@github.com:pmunin/gtasks-cli.git
+cd gtasks-cli && go build -o ~/.local/bin/gtasks .   # ensure ~/.local/bin is on your PATH
 ```
-Installs to `~/.local/bin` by default. Set `INSTALL_DIR` to override:
-```bash
-INSTALL_DIR=/usr/local/bin curl -fsSL https://raw.githubusercontent.com/pmunin/gtasks-cli/master/install.sh | bash
-```
-
-**Manual install** _(works only while the repo is public)_:
-1. Download the binary for your system from [GitHub Releases](https://github.com/pmunin/gtasks-cli/releases)
-2. Move to a directory in your PATH (e.g. `~/.local/bin` or `/usr/local/bin`)
-3. `chmod +x gtasks`
-
-**Windows:** Download the binary from [GitHub Releases](https://github.com/pmunin/gtasks-cli/releases) and add to PATH (while the repo is public), or build from source with Go.
 
 Verify installation: `gtasks --version`
 
 **IMPORTANT for Agents:** Always check if gtasks is installed before attempting to use it. If the command is not found, inform the user and provide installation instructions.
 
-### 2. Environment Variables
+### 2. Google OAuth Credentials
 
-Set up Google OAuth2 credentials as environment variables:
-
-```bash
-export GTASKS_CLIENT_ID="your-client-id.apps.googleusercontent.com"
-export GTASKS_CLIENT_SECRET="your-client-secret"
-```
+> **Homebrew / source builds do not ship with OAuth credentials.** You must supply your own Google client before `gtasks login` will work.
 
 **How to get credentials:**
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select an existing one
-3. Enable the Google Tasks API
-4. Create OAuth2 credentials (Application type: "Desktop app")
-5. Note the authorized redirect URIs that gtasks uses:
-   - `http://localhost:8080/callback`
-   - `http://localhost:8081/callback`
-   - `http://localhost:8082/callback`
-   - `http://localhost:9090/callback`
-   - `http://localhost:9091/callback`
+3. Enable the **Google Tasks API**
+4. Create OAuth2 credentials, Application type: **"Desktop app"**
+5. Copy the client ID and client secret
 
-**For persistent setup**, the recommended approach is to add credentials to the gtasks config file:
+gtasks logs in via a loopback redirect on one of these ports — `8080`, `8081`, `8082`, `9090`, `9091` (path `/callback`). A "Desktop app" client allows loopback redirects automatically, so there is nothing to register.
+
+**Provide the credentials via the config file (recommended — persistent):**
 
 ```toml
-# ~/.config/gtasks/config.toml  (new installs)
-# ~/.gtasks/config.toml          (legacy installs)
+# ~/.config/gtasks/config.toml   (new installs; ~/.gtasks/config.toml for legacy)
 [credentials]
 client_id     = "your-client-id.apps.googleusercontent.com"
 client_secret = "your-client-secret"
 ```
 
-Set permissions: `chmod 600 ~/.config/gtasks/config.toml`
+```bash
+chmod 600 ~/.config/gtasks/config.toml
+```
 
-Alternatively, export from your shell profile — do not commit these values to version control:
+**Or via environment variables** (alternative — add to your shell profile, never commit these values):
 
 ```bash
-export GTASKS_CLIENT_ID="your-client-id"
+export GTASKS_CLIENT_ID="your-client-id.apps.googleusercontent.com"
 export GTASKS_CLIENT_SECRET="your-client-secret"
 ```
 

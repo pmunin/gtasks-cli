@@ -14,6 +14,25 @@ class Gtasks < Formula
            "-o", bin/"gtasks", "."
   end
 
+  def caveats
+    <<~EOS
+      gtasks ships without Google OAuth credentials — you must supply your own
+      before `gtasks login` will work:
+
+        1. In Google Cloud Console: enable the Google Tasks API and create an
+           OAuth client (Application type: "Desktop app").
+        2. Save the client ID/secret to ~/.config/gtasks/config.toml:
+
+             [credentials]
+             client_id     = "....apps.googleusercontent.com"
+             client_secret = "...."
+
+           then: chmod 600 ~/.config/gtasks/config.toml
+           (or export GTASKS_CLIENT_ID / GTASKS_CLIENT_SECRET instead)
+        3. Run: gtasks login
+    EOS
+  end
+
   test do
     assert_match version.to_s, shell_output("#{bin}/gtasks --version")
   end
